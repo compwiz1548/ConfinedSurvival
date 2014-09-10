@@ -1,0 +1,35 @@
+name: ConfinedSurvival
+author: Compwiz1548
+description: A custom plugin to guide progress in the ShepSquared Confined Survival series
+version: 1.0
+main: com.compwiz1548.ConfinedSurvival.ConfinedSurvival
+commands:
+   cs:
+      aliases: [confinedsurvival]
+      description: Tells you whether or not the nether is unlocked.
+      usage:
+        /<command> - list available commands (show help)
+        /<command> check - Checks to see if the nether is unlocked.
+        /<command> reload - Reloads the config from file.
+        /<command> reset [world] - Resets the number of kills and locks nether.
+        /<command> help [command] - get help on command usage.
+permissions:
+    confinedsurvival.*:
+        description: Grants all ConfinedSurvival permissions.
+        children:
+            confinedsurvival.help: true
+            confinedsurvival.check: true
+            confinedsurvival.reload: true
+            confinedsurvival.reset: true
+    confinedsurvial.help:
+        description: Can view the command reference help pages
+        default: op
+    confinedsurvival.check:
+        description: Can check to see if the nether is unlocked via command.
+        default: op
+    confinedsurvival.reload:
+        description: Can reload the config from file.
+        default: op
+    configsurvival.reset:
+        description: Cam reset the counter on the world and lock the nether.
+        default: op
