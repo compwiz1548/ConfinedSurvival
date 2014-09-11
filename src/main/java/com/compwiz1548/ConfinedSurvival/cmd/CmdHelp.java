@@ -7,8 +7,10 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.Set;
 
-public class CmdHelp extends CSCmd {
-    public CmdHelp() {
+public class CmdHelp extends CSCmd
+{
+    public CmdHelp()
+    {
         name = permission = "help";
         minParams = 0;
         maxParams = 10;
@@ -18,7 +20,8 @@ public class CmdHelp extends CSCmd {
     }
 
     @Override
-    public void cmdStatus(CommandSender sender) {
+    public void cmdStatus(CommandSender sender)
+    {
         String commands = ConfinedSurvival.csCommand.getCommandNames().toString().replace(", ", C_DESC + ", " + C_CMD);
         sender.sendMessage(C_HEAD + "Commands: " + C_CMD + commands.substring(1, commands.length() - 1));
         sender.sendMessage("Example, for info on \"set\" command: " + cmd(sender) + nameEmphasized() + C_CMD + "set");
@@ -26,15 +29,19 @@ public class CmdHelp extends CSCmd {
     }
 
     @Override
-    public void execute(CommandSender sender, Player player, List<String> params, String worldName) {
-        if (params.isEmpty()) {
+    public void execute(CommandSender sender, Player player, List<String> params, String worldName)
+    {
+        if (params.isEmpty())
+        {
             sendCmdHelp(sender);
             return;
         }
 
         Set<String> commands = ConfinedSurvival.csCommand.getCommandNames();
-        for (String param : params) {
-            if (commands.contains(param.toLowerCase())) {
+        for (String param : params)
+        {
+            if (commands.contains(param.toLowerCase()))
+            {
                 ConfinedSurvival.csCommand.subCommands.get(param.toLowerCase()).sendCmdHelp(sender);
                 return;
             }

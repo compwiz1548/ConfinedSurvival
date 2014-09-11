@@ -7,8 +7,10 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class CmdReload extends CSCmd {
-    public CmdReload() {
+public class CmdReload extends CSCmd
+{
+    public CmdReload()
+    {
         name = permission = "reload";
         minParams = 0;
         maxParams = 0;
@@ -19,7 +21,8 @@ public class CmdReload extends CSCmd {
     }
 
     @Override
-    public void execute(CommandSender sender, Player player, List<String> params, String worldName) {
+    public void execute(CommandSender sender, Player player, List<String> params, String worldName)
+    {
         if (player != null)
             Config.log("Reloading config file at the command of player \"" + player.getName() + "\".");
 

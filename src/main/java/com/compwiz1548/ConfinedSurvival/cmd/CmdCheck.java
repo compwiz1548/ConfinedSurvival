@@ -6,8 +6,10 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class CmdCheck extends CSCmd {
-    public CmdCheck() {
+public class CmdCheck extends CSCmd
+{
+    public CmdCheck()
+    {
         name = permission = "check";
         minParams = 0;
         maxParams = 0;
@@ -16,10 +18,13 @@ public class CmdCheck extends CSCmd {
     }
 
     @Override
-    public void execute(CommandSender sender, Player player, List<String> params, String worldName) {
-        if (Config.nether()) {
+    public void execute(CommandSender sender, Player player, List<String> params, String worldName)
+    {
+        if (Config.nether())
+        {
             sender.sendMessage("The nether is unlocked!");
-        } else {
+        } else
+        {
             sender.sendMessage("The nether is locked!  Kill " + Config.numLeft() + " more Mutant Zombies to unlock it!");
         }
     }

@@ -7,23 +7,29 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 
-public class CmdCommands extends CSCmd {
+public class CmdCommands extends CSCmd
+{
     private static int pageSize = 8;  // examples to list per page; 10 lines available, 1 for header, 1 for footer
 
-    public CmdCommands() {
+    public CmdCommands()
+    {
         name = "commands";
         permission = "help";
         hasWorldNameInput = false;
     }
 
     @Override
-    public void execute(CommandSender sender, Player player, List<String> params, String worldName) {
+    public void execute(CommandSender sender, Player player, List<String> params, String worldName)
+    {
         // determine which page we're viewing
         int page = (player == null) ? 0 : 1;
-        if (!params.isEmpty()) {
-            try {
+        if (!params.isEmpty())
+        {
+            try
+            {
                 page = Integer.parseInt(params.get(0));
-            } catch (NumberFormatException ignored) {
+            } catch (NumberFormatException ignored)
+            {
             }
         }
 
@@ -39,11 +45,13 @@ public class CmdCommands extends CSCmd {
         sender.sendMessage(C_HEAD + ConfinedSurvival.plugin.getDescription().getFullName() + "  -  key: " +
                 commandEmphasized("command") + C_REQ + "<required> " + C_OPT + "[optional]");
 
-        if (page > 0) {
+        if (page > 0)
+        {
             // send examples for this page
             int first = ((page - 1) * pageSize);
             int count = Math.min(pageSize, examples.size() - first);
-            for (int i = first; i < first + count; i++) {
+            for (int i = first; i < first + count; i++)
+            {
                 sender.sendMessage(examples.get(i));
             }
 
@@ -53,9 +61,11 @@ public class CmdCommands extends CSCmd {
                 sender.sendMessage(footer + Integer.toString(page + 1) + C_DESC + " - view next page of commands.");
             else if (page > 1)
                 sender.sendMessage(footer + C_DESC + "- view first page of commands.");
-        } else {
+        } else
+        {
             // if page "0" is specified, send all examples; done by default for console but can be specified by player
-            for (String example : examples) {
+            for (String example : examples)
+            {
                 sender.sendMessage(example);
             }
         }

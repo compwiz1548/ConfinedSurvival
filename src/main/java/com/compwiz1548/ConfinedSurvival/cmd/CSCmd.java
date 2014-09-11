@@ -7,7 +7,8 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CSCmd {
+public abstract class CSCmd
+{
     /*
      * Primary variables, should be set as needed in constructors for the subclassed commands
 	 */
@@ -54,25 +55,30 @@ public abstract class CSCmd {
     /*
      * This is an optional override, used to provide some extra command status info, like the currently set value
      */
-    public void cmdStatus(CommandSender sender) {
+    public void cmdStatus(CommandSender sender)
+    {
     }
 
     // add command examples for use the default "/wb" command list and for internal usage reference, formatted and colorized
-    public void addCmdExample(String example) {
+    public void addCmdExample(String example)
+    {
         addCmdExample(example, true, true, true);
     }
 
-    public void addCmdExample(String example, boolean forPlayer, boolean forConsole, boolean prefix) {
+    public void addCmdExample(String example, boolean forPlayer, boolean forConsole, boolean prefix)
+    {
         // go ahead and colorize required "<>" and optional "[]" parameters, extra command words, and description
         example = example.replace("<", C_REQ + "<").replace("[", C_OPT + "[").replace("^", C_CMD).replace("- ", C_DESC + "- ");
 
         // all "{}" are replaced by "[]" (optional) for player, "<>" (required) for console
-        if (forPlayer) {
+        if (forPlayer)
+        {
             String exampleP = (prefix ? CMD_P : "") + example.replace("{", C_OPT + "[").replace("}", "]");
             cmdExamplePlayer.add(exampleP);
             cmdExamplesPlayer.add(exampleP);
         }
-        if (forConsole) {
+        if (forConsole)
+        {
             String exampleC = (prefix ? CMD_C : "") + example.replace("{", C_REQ + "<").replace("}", ">");
             cmdExampleConsole.add(exampleC);
             cmdExamplesConsole.add(exampleC);
@@ -80,32 +86,39 @@ public abstract class CSCmd {
     }
 
     // return root command formatted for player or console, based on sender
-    public String cmd(CommandSender sender) {
+    public String cmd(CommandSender sender)
+    {
         return (sender instanceof Player) ? CMD_P : CMD_C;
     }
 
     // formatted and colorized text, intended for marking command name
-    public String commandEmphasized(String text) {
+    public String commandEmphasized(String text)
+    {
         return C_CMD + ChatColor.UNDERLINE + text + ChatColor.RESET + " ";
     }
 
     // returns green "enabled" or red "disabled" text
-    public String enabledColored(boolean enabled) {
+    public String enabledColored(boolean enabled)
+    {
         return enabled ? C_REQ + "enabled" : C_ERR + "disabled";
     }
 
     // formatted and colorized command name, optionally prefixed with "[world]" (for player) / "<world>" (for console)
-    public String nameEmphasized() {
+    public String nameEmphasized()
+    {
         return commandEmphasized(name);
     }
 
-    public String nameEmphasizedW() {
+    public String nameEmphasizedW()
+    {
         return "{world} " + nameEmphasized();
     }
 
     // send command example message(s) and other helpful info
-    public void sendCmdHelp(CommandSender sender) {
-        for (String example : ((sender instanceof Player) ? cmdExamplePlayer : cmdExampleConsole)) {
+    public void sendCmdHelp(CommandSender sender)
+    {
+        for (String example : ((sender instanceof Player) ? cmdExamplePlayer : cmdExampleConsole))
+        {
             sender.sendMessage(example);
         }
         cmdStatus(sender);
@@ -114,13 +127,15 @@ public abstract class CSCmd {
     }
 
     // send error message followed by command example message(s)
-    public void sendErrorAndHelp(CommandSender sender, String error) {
+    public void sendErrorAndHelp(CommandSender sender, String error)
+    {
         sender.sendMessage(C_ERR + error);
         sendCmdHelp(sender);
     }
 
     // interpret string as boolean value (yes/no, true/false, on/off, +/-, 1/0)
-    public boolean strAsBool(String str) {
+    public boolean strAsBool(String str)
+    {
         str = str.toLowerCase();
         return str.startsWith("y") || str.startsWith("t") || str.startsWith("on") || str.startsWith("+") || str.startsWith("1");
     }

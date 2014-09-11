@@ -6,8 +6,10 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class CmdReset extends CSCmd {
-    public CmdReset() {
+public class CmdReset extends CSCmd
+{
+    public CmdReset()
+    {
         name = permission = "reset";
         minParams = 0;
         maxParams = 1;
@@ -17,7 +19,8 @@ public class CmdReset extends CSCmd {
     }
 
     @Override
-    public void execute(CommandSender sender, Player player, List<String> params, String worldName) {
+    public void execute(CommandSender sender, Player player, List<String> params, String worldName)
+    {
         Config.setNetherLock(false);
         Config.setNumKilled(0);
         sender.sendMessage(Config.worldName() + " reset.  Kill " + Config.numLeft() + " more Mutant Zombies to unlock the nether.");

@@ -8,13 +8,17 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-public class CSListener implements Listener {
+public class CSListener implements Listener
+{
 
     //Stop a player from entering the nether before the correct number of Mutant Zombies have been killed.
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onEnterNetherPortal(PlayerPortalEvent event) {
-        if (event.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
-            if (!Config.nether()) {
+    public void onEnterNetherPortal(PlayerPortalEvent event)
+    {
+        if (event.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL)
+        {
+            if (!Config.nether())
+            {
                 event.setCancelled(true);
                 event.getPlayer().sendMessage("The nether is locked!  Go kill " + Config.numLeft() + " more Mutant Zombies!");
             }
@@ -23,7 +27,8 @@ public class CSListener implements Listener {
 
     //Count the number of times a Mutant Zombie is killed.
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onKill(EntityDeathEvent event) {
+    public void onKill(EntityDeathEvent event)
+    {
         String entityName = event.getEntity().toString();
         if (entityName.contains("MutantZombie"))
             Config.incrementKilled();
@@ -31,7 +36,8 @@ public class CSListener implements Listener {
 
     //Remove names on mobs when they are spawned.
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onSpawn(CreatureSpawnEvent event) {
+    public void onSpawn(CreatureSpawnEvent event)
+    {
         event.getEntity().setCustomNameVisible(false);
     }
 }
