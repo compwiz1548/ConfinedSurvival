@@ -6,7 +6,7 @@ main: com.compwiz1548.ConfinedSurvival.ConfinedSurvival
 commands:
    cs:
       aliases: [confinedsurvival]
-      description: Tells you whether or not the nether is unlocked.
+      description: Primary command for ConfinedSurvival.
       usage:
         /<command> - list available commands (show help)
         /<command> check - Checks to see if the nether is unlocked.

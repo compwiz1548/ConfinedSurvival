@@ -3,7 +3,6 @@ package com.compwiz1548.ConfinedSurvival;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -32,12 +31,5 @@ public class CSListener implements Listener
         String entityName = event.getEntity().toString();
         if (entityName.contains("MutantZombie"))
             Config.incrementKilled();
-    }
-
-    //Remove names on mobs when they are spawned.
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onSpawn(CreatureSpawnEvent event)
-    {
-        event.getEntity().setCustomNameVisible(false);
     }
 }
